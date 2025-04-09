@@ -1,16 +1,16 @@
 const Joi = require("joi");
 
-exports.addBannersSchema = {
+exports.addPortfoliosSchema = {
   body: Joi.object({
     name_uz: Joi.string(),
     name_ru: Joi.string(),
     description_uz: Joi.string(),
     description_ru: Joi.string(),
-    link: Joi.string(),
+    image: Joi.array(),
   }),
 };
 
-exports.patchBannersSchema = {
+exports.patchPortfoliosSchema = {
   params: Joi.object({
     id: Joi.string(),
   }),
@@ -19,11 +19,11 @@ exports.patchBannersSchema = {
     name_ru: Joi.string(),
     description_uz: Joi.string(),
     description_ru: Joi.string(),
-    link: Joi.string(),
+    image: Joi.array(),
   }),
 };
 
-exports.allBannersSchema = {
+exports.allPortfoliosSchema = {
   query: Joi.object({
     q: Joi.string(),
     sort: Joi.object({

@@ -1,20 +1,20 @@
 const express = require("express");
 const isLoggedIn = require("../../shared/auth/isLoggedIn");
 const {
-  addBanners,
-  patchBanners,
-  showBanners,
-  deleteBanners,
-  getBanners,
+  addServices,
+  patchServices,
+  showServices,
+  deleteServices,
+  getServices,
 } = require("./_controllers");
 const upload = require("../../shared/upload");
 
 const router = express.Router();
 
-router.post("/banners", upload.single("image"), addBanners);
-router.get("/banners", getBanners);
-router.get("/banners/:id", showBanners);
-router.patch("/banners/:id", isLoggedIn, upload.single("image"), patchBanners);
-router.delete("/banners/:id", isLoggedIn, deleteBanners);
+router.post("/services", addServices);
+router.get("/services", getServices);
+router.get("/services/:id", showServices);
+router.patch("/services/:id", isLoggedIn, patchServices);
+router.delete("/services/:id", isLoggedIn, deleteServices);
 
 module.exports = router;

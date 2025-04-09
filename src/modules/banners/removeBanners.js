@@ -6,7 +6,7 @@ const path = require("path");
 const removeBannersService = async ({ id }) => {
   // Banner mavjudligini tekshirish
   const existing = await Banners.findById(id);
-  console.log("Existing banner:", existing);
+  console.log("Existing portfolio:", existing);
 
   if (!existing) {
     throw new NotFoundError("Banners Not Found.");

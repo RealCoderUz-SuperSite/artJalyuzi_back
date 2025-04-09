@@ -1,6 +1,6 @@
-const Banners = require("./Banners");
+const Portfolios = require("./Portfolios");
 
-const allBannersService = async (query) => {
+const allPortfoliosService = async (query) => {
   try {
     const { q, page, limit, sort } = query || {};
 
@@ -21,18 +21,18 @@ const allBannersService = async (query) => {
       }
     }
 
-    const banners = await Banners.find()
+    const portfolios = await Portfolios.find()
       .sort(sortOptions)
       .skip(paginationOptions.skip)
       .limit(paginationOptions.limit)
       .lean()
       .exec();
 
-    const totalBanners = await Banners.countDocuments();
+    const totalPortfolios = await Portfolios.countDocuments();
 
     return {
-      banners: banners,
-      total: totalBanners,
+      portfolios: portfolios,
+      total: totalPortfolios,
       offset: paginationOptions.skip,
       limit: paginationOptions.limit,
     };
@@ -41,4 +41,4 @@ const allBannersService = async (query) => {
   }
 };
 
-module.exports = allBannersService;
+module.exports = allPortfoliosService;

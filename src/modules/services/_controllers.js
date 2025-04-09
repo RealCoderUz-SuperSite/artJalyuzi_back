@@ -1,29 +1,22 @@
 const express = require("express");
 const httpValidator = require("../../shared/http-validator");
 const {
-  addBannersSchema,
-  patchBannersSchema,
-  allBannersSchema,
+  addServicesSchema,
+  patchServicesSchema,
+  allServicesSchema,
 } = require("./_schemas");
-const addBannersService = require("./addBanners");
-const editBannersService = require("./editBanners");
-const showBannersService = require("./showBanners");
-const removeBannersService = require("./removeBanners");
-const allBannersService = require("./allBanners");
+const addServicesService = require("./add");
+const editServicesService = require("./edit");
+const showServicesService = require("./show");
+const removeServicesService = require("./remove");
+const allServicesService = require("./all");
 const { UnauthorizedError } = require("../../shared/errors");
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- * @param {express.NextFunction} next
- */
-const addBanners = async (req, res, next) => {
+const addServices = async (req, res, next) => {
   try {
-    console.log(req.file, "file");
+    // httpValidator({ body: req.body }, addServicesSchema);
 
-    httpValidator({ body: req.body }, addBannersSchema);
-
-    const result = await addBannersService(req);
+    const result = await addServicesService(req);
 
     console.log(result, "result");
 
@@ -41,25 +34,13 @@ const addBanners = async (req, res, next) => {
   }
 };
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- * @param {express.NextFunction} next
- */
-
-const patchBanners = async (req, res, next) => {
+const patchServices = async (req, res, next) => {
   try {
-    httpValidator({ body: req.body }, patchBannersSchema);
-    if (req?.file) {
-      let SITE_URL = process.env.SITE_URL;
-      let image = `${SITE_URL}/${req.file.filename}`;
-      console.log(`${SITE_URL}/${req.file.filename}`);
-      // Only pass the necessary data from req.body
-      req.body.image = image;
-    }
-    const result = await editBannersService({
+    httpValidator({ body: req.body }, patchServicesSchema);
+
+    const result = await editServicesService({
       id: req.params.id,
-      changes: { ...req.body }, // Include image in the changes
+      changes: { ...req.body },
     });
 
     res.status(200).json({
@@ -70,14 +51,9 @@ const patchBanners = async (req, res, next) => {
   }
 };
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- * @param {express.NextFunction} next
- */
-const showBanners = async (req, res, next) => {
+const showServices = async (req, res, next) => {
   try {
-    const result = await showBannersService({ id: req.params.id });
+    const result = await showServicesService({ id: req.params.id });
 
     res.status(200).json({
       data: result,
@@ -87,15 +63,9 @@ const showBanners = async (req, res, next) => {
   }
 };
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- * @param {express.NextFunction} next
- */
-
-const getBanners = async (req, res, next) => {
+const getServices = async (req, res, next) => {
   try {
-    httpValidator({ query: req.query }, allBannersSchema);
+    httpValidator({ query: req.query }, allServicesSchema);
 
     const { query } = req;
     const offset =
@@ -107,14 +77,14 @@ const getBanners = async (req, res, next) => {
         ? parseInt(query.page.limit)
         : undefined;
 
-    const result = await allBannersService({
+    const result = await allServicesService({
       q: query.q,
       sort: query.sort,
       page: { limit, offset },
     });
 
     res.status(200).json({
-      data: result.banners,
+      data: result.services,
       pageInfo: {
         total: result.total,
         offset: result.offset,
@@ -126,14 +96,9 @@ const getBanners = async (req, res, next) => {
   }
 };
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- * @param {express.NextFunction} next
- */
-const deleteBanners = async (req, res, next) => {
+const deleteServices = async (req, res, next) => {
   try {
-    const result = await removeBannersService({ id: req.params.id });
+    const result = await removeServicesService({ id: req.params.id });
 
     res.status(200).json({
       data: result,
@@ -144,9 +109,9 @@ const deleteBanners = async (req, res, next) => {
 };
 
 module.exports = {
-  addBanners,
-  patchBanners,
-  showBanners,
-  deleteBanners,
-  getBanners,
+  addServices,
+  patchServices,
+  showServices,
+  deleteServices,
+  getServices,
 };

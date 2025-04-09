@@ -1,22 +1,22 @@
 const express = require("express");
 const httpValidator = require("../../shared/http-validator");
 const {
-  addBannersSchema,
-  patchBannersSchema,
-  allBannersSchema,
+  addPortfoliosSchema,
+  patchPortfoliosSchema,
+  allPortfoliosSchema,
 } = require("./_schemas");
-const addBannersService = require("./addBanners");
-const editBannersService = require("./editBanners");
-const showBannersService = require("./showBanners");
-const removeBannersService = require("./removeBanners");
-const allBannersService = require("./allBanners");
+const addPortfoliosService = require("./add");
+const editPortfoliosService = require("./edit");
+const showPortfoliosService = require("./show");
+const removePortfoliosService = require("./remove");
+const allPortfoliosService = require("./all");
 const { UnauthorizedError } = require("../../shared/errors");
 
-const addBanners = async (req, res, next) => {
+const addPortfolios = async (req, res, next) => {
   try {
-    httpValidator({ body: req.body }, addBannersSchema);
+    // httpValidator({ body: req.body }, addPortfoliosSchema);
 
-    const result = await addBannersService(req);
+    const result = await addPortfoliosService(req);
 
     console.log(result, "result");
 
@@ -34,11 +34,11 @@ const addBanners = async (req, res, next) => {
   }
 };
 
-const patchBanners = async (req, res, next) => {
+const patchPortfolios = async (req, res, next) => {
   try {
-    httpValidator({ body: req.body }, patchBannersSchema);
+    httpValidator({ body: req.body }, patchPortfoliosSchema);
 
-    const result = await editBannersService({
+    const result = await editPortfoliosService({
       id: req.params.id,
       changes: { ...req.body },
     });
@@ -51,9 +51,9 @@ const patchBanners = async (req, res, next) => {
   }
 };
 
-const showBanners = async (req, res, next) => {
+const showPortfolios = async (req, res, next) => {
   try {
-    const result = await showBannersService({ id: req.params.id });
+    const result = await showPortfoliosService({ id: req.params.id });
 
     res.status(200).json({
       data: result,
@@ -63,9 +63,9 @@ const showBanners = async (req, res, next) => {
   }
 };
 
-const getBanners = async (req, res, next) => {
+const getPortfolios = async (req, res, next) => {
   try {
-    httpValidator({ query: req.query }, allBannersSchema);
+    httpValidator({ query: req.query }, allPortfoliosSchema);
 
     const { query } = req;
     const offset =
@@ -77,14 +77,14 @@ const getBanners = async (req, res, next) => {
         ? parseInt(query.page.limit)
         : undefined;
 
-    const result = await allBannersService({
+    const result = await allPortfoliosService({
       q: query.q,
       sort: query.sort,
       page: { limit, offset },
     });
 
     res.status(200).json({
-      data: result.banners,
+      data: result.portfolios,
       pageInfo: {
         total: result.total,
         offset: result.offset,
@@ -96,9 +96,9 @@ const getBanners = async (req, res, next) => {
   }
 };
 
-const deleteBanners = async (req, res, next) => {
+const deletePortfolios = async (req, res, next) => {
   try {
-    const result = await removeBannersService({ id: req.params.id });
+    const result = await removePortfoliosService({ id: req.params.id });
 
     res.status(200).json({
       data: result,
@@ -109,9 +109,9 @@ const deleteBanners = async (req, res, next) => {
 };
 
 module.exports = {
-  addBanners,
-  patchBanners,
-  showBanners,
-  deleteBanners,
-  getBanners,
+  addPortfolios,
+  patchPortfolios,
+  showPortfolios,
+  deletePortfolios,
+  getPortfolios,
 };

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const BannersSchema = new mongoose.Schema(
+const PortfoliosSchema = new mongoose.Schema(
   {
     name_uz: {
       type: mongoose.SchemaTypes.String,
@@ -18,13 +18,18 @@ const BannersSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.String,
       required: true,
     },
-    link: {
-      type: mongoose.SchemaTypes.String,
-      required: true,
-    },
-    image: {
-      type: mongoose.SchemaTypes.String,
-    },
+    image: [
+      {
+        url: {
+          type: mongoose.SchemaTypes.String,
+          required: true,
+        },
+        id: {
+          type: mongoose.SchemaTypes.String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     versionKey: false,
@@ -32,6 +37,6 @@ const BannersSchema = new mongoose.Schema(
   }
 );
 
-const Banners = mongoose.model("Banners", BannersSchema);
+const Portfolios = mongoose.model("Portfolios", PortfoliosSchema);
 
-module.exports = Banners;
+module.exports = Portfolios;
