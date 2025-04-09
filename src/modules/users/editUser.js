@@ -1,8 +1,7 @@
 const { hash } = require("bcryptjs");
-const { NotFoundError, BadRequestError } = require("../../shared/errors");
+const { NotFoundError } = require("../../shared/errors");
 const User = require("./User");
 
-let SITE_URL = process.env.SITE_URL;
 const editUserS = async ({ id, req, ...changes }) => {
   try {
     console.log(req.file, "REQ FILE");
