@@ -17,12 +17,12 @@ const removeBannersService = async ({ id }) => {
     let fileId;
 
     // Agar image object bo'lsa va id mavjud bo'lsa
-    if (typeof existing.image[0] === "object" && existing.image[0].id) {
-      fileId = existing.image[0].id;
+    if (typeof existing.image === "object" && existing.image.id) {
+      fileId = existing.image.id;
     }
     // Agar image string bo'lsa
-    else if (typeof existing[0].image === "string") {
-      fileId = existing[0].image;
+    else if (typeof existing.image === "string") {
+      fileId = existing.image;
     }
 
     console.log(fileId, "fileID");

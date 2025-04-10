@@ -35,14 +35,12 @@ const handleSingleUpload = async (req, res) => {
       return res.status(400).json({ error: "Fayl yuklanmadi" });
     }
 
-    const data = [
-      {
-        url: `${SITE_URL}/public/${req.file.filename}`,
-        id: req.file.filename,
-      },
-    ];
+    const data = {
+      url: `${SITE_URL}/public/${req.file.filename}`,
+      id: req.file.filename,
+    };
 
-    res.status(200).json({ data });
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
