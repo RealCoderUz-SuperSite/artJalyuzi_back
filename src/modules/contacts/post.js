@@ -5,7 +5,7 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, {
   polling: false,
 });
 
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.MAIN_SITE;
 const chatId = process.env.CHAT_ID;
 
 // [1551855614 /* @Real_Coder */]; with array
