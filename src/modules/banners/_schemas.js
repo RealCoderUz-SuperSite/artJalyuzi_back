@@ -2,6 +2,7 @@ const Joi = require("joi");
 
 exports.addBannersSchema = {
   body: Joi.object({
+    _id: Joi.string(),
     name_uz: Joi.string(),
     name_ru: Joi.string(),
     description_uz: Joi.string(),
@@ -16,6 +17,7 @@ exports.patchBannersSchema = {
     id: Joi.string(),
   }),
   body: Joi.object({
+    _id: Joi.string(),
     name_uz: Joi.string(),
     name_ru: Joi.string(),
     description_uz: Joi.string(),
