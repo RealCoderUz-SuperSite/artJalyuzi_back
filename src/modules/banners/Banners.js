@@ -23,7 +23,16 @@ const BannersSchema = new mongoose.Schema(
       required: true,
     },
     image: {
-      type: mongoose.SchemaTypes.String,
+      type: {
+        url: {
+          type: mongoose.SchemaTypes.String,
+          required: true,
+        },
+        id: {
+          type: mongoose.SchemaTypes.String,
+          required: true,
+        },
+      },
     },
   },
   {
