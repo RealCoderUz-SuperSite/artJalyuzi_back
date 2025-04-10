@@ -2,7 +2,9 @@ const { NotFoundError } = require("../../shared/errors");
 const Services = require("./Services");
 
 const editServicesService = async ({ id, ...changes }) => {
-  console.log(changes.changes);
+  if (changes._id) {
+    delete changes._id;
+  }
   try {
     const updatedServices = await Services.findByIdAndUpdate(
       id,

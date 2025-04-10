@@ -2,7 +2,9 @@ const { NotFoundError } = require("../../shared/errors");
 const Portfolios = require("./Portfolios");
 
 const editPortfoliosService = async ({ id, ...changes }) => {
-  console.log(changes.changes);
+  if (changes._id) {
+    delete changes._id;
+  }
   try {
     const updatedPortfolios = await Portfolios.findByIdAndUpdate(
       id,

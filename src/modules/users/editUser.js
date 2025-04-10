@@ -4,9 +4,6 @@ const User = require("./User");
 
 const editUserS = async ({ id, req, ...changes }) => {
   try {
-    console.log(req.file, "REQ FILE");
-    console.log(changes, "CHANGES");
-
     const updatedUser = await User.findByIdAndUpdate(id, changes, {
       new: true,
     });
