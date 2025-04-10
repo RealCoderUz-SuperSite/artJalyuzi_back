@@ -7,7 +7,7 @@ exports.addBannersSchema = {
     description_uz: Joi.string(),
     description_ru: Joi.string(),
     link: Joi.string(),
-    image: Joi.object(),
+    image: Joi.array(),
   }),
 };
 
@@ -21,7 +21,7 @@ exports.patchBannersSchema = {
     description_uz: Joi.string(),
     description_ru: Joi.string(),
     link: Joi.string(),
-    image: Joi.object(),
+    image: Joi.array(),
   }),
 };
 
