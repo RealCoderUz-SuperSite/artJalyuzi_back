@@ -8,9 +8,13 @@ const editBannersService = async ({ id, ...changes }) => {
     delete changes._id;
   }
   try {
-    const updatedBanners = await Banners.findByIdAndUpdate(id, changes, {
-      new: true,
-    });
+    const updatedBanners = await Banners.findByIdAndUpdate(
+      id,
+      changes.changes,
+      {
+        new: true,
+      }
+    );
 
     if (!updatedBanners) {
       throw new NotFoundError("Banners Not Found.");
