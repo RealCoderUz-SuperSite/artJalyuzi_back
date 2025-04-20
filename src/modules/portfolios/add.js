@@ -8,10 +8,6 @@ const addPortfoliosService = async (req) => {
     console.log(req.body, "BODY");
 
     const portfolios = new Portfolios({
-      name_uz,
-      name_ru,
-      description_uz,
-      description_ru,
       image,
     });
 

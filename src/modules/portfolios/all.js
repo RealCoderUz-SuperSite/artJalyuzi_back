@@ -16,7 +16,7 @@ const allPortfoliosService = async (query) => {
     paginationOptions.limit = requestedLimit;
 
     if (sort && sort.by) {
-      if (sort.by === "name_uz") {
+      if (sort.by === "_id") {
         sortOptions[sort.by] = sort.order === "desc" ? -1 : 1;
       }
     }

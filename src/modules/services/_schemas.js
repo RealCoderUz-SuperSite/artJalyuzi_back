@@ -5,8 +5,6 @@ exports.addServicesSchema = {
     _id: Joi.string(),
     name_uz: Joi.string(),
     name_ru: Joi.string(),
-    description_uz: Joi.string(),
-    description_ru: Joi.string(),
     image: Joi.array(),
   }),
 };
@@ -19,8 +17,6 @@ exports.patchServicesSchema = {
     _id: Joi.string(),
     name_uz: Joi.string(),
     name_ru: Joi.string(),
-    description_uz: Joi.string(),
-    description_ru: Joi.string(),
     image: Joi.array(),
   }),
 };

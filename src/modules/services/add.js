@@ -10,8 +10,6 @@ const addServicesService = async (req) => {
     const services = new Services({
       name_uz,
       name_ru,
-      description_uz,
-      description_ru,
       image,
     });
 

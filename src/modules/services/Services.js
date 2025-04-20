@@ -10,14 +10,6 @@ const ServicesSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.String,
       required: true,
     },
-    description_uz: {
-      type: mongoose.SchemaTypes.String,
-      required: true,
-    },
-    description_ru: {
-      type: mongoose.SchemaTypes.String,
-      required: true,
-    },
     image: [
       {
         url: {
