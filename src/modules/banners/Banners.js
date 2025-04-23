@@ -20,7 +20,6 @@ const BannersSchema = new mongoose.Schema(
     },
     link: {
       type: mongoose.SchemaTypes.String,
-      required: true,
     },
     image: {
       type: {
